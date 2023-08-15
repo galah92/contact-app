@@ -1,0 +1,56 @@
+<% layout("./layout") %>
+
+<form action="/contacts" method="get" class="tool-bar">
+  <label for="search">Search Term</label>
+  <input id="search" type="search" name="q" value="<%= name %>" />
+  <input type="submit" value="Search" />
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>First</th>
+      <th>Last</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% contacts.forEach((contact) =>  { %>
+    <tr>
+      <td>
+        <%= contact.first %>
+      </td>
+      <td>
+        <%= contact.last %>
+      </td>
+      <td>
+        <%= contact.phone %>
+      </td>
+      <td>
+        <%= contact.email %>
+      </td>
+      <td>
+        <a href="/contacts/<%= contact.id %>/edit">Edit</a>
+        <a href="/contacts/<%= contact.id %>">View</a>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<div>
+  <span style="float: right">
+    <% if (page > 1) { %>
+    <a href="/contacts?page=<%= page - 1 %>">Previous</a>
+    <% } %>
+    <% if (contacts.length === 10) { %>
+    <a href="/contacts?page=<%= page + 1 %>">Next</a>
+    <% } %>
+  </span>
+</div>
+
+<p>
+  <a href="/contacts/new">Add Contact</a>
+</p>

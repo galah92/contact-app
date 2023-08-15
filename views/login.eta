@@ -1,0 +1,5 @@
+<% layout("./layout") %>
+
+<div id="firebaseui-auth-container"></div>
+<div id="loader">Loading...</div>
+<script src="/auth.js" type="module"></script>

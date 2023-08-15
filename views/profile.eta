@@ -1,0 +1,6 @@
+<% layout("./layout") %>
+
+<span>Hello <%=it.email%></span>
+<p>
+  <a href="/logout">Logout</a>
+</p>

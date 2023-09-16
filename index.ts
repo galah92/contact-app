@@ -19,7 +19,7 @@ app.get("/", (_req, res) => {
 });
 
 app.get("/contacts", (req, res) => {
-  const q = req.query.q as string | undefined;
+  const q = req.query.q?.toString();
   const page = Number(req.query.page ?? "1");
   const contacts = q ? contactsRepo.search(q) : contactsRepo.all(page);
   const name = q ?? "";

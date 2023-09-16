@@ -48,7 +48,7 @@ export const validate = (contact: Contact): boolean => {
   if (existing && existing.id !== contact.id) {
     contact.errors.email = "Email must be unique";
   }
-  return Object.keys(contact.errors).length === 0;
+  return Object.keys(contact.errors ?? {}).length === 0;
 };
 
 export const save = (contact: Contact): boolean => {

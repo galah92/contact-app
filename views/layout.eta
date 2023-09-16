@@ -5,19 +5,16 @@
   <title>Contact App</title>
   <link rel="stylesheet" href="https://unpkg.com/missing.css@1.0.9/dist/missing.min.css">
   <script src="https://unpkg.com/htmx.org@1.9.4" integrity="sha384-zUfuhFKKZCbHTY6aRR46gxiqszMk5tcHjsVFxnUo8VMus4kHGVdIYVbOYYNlKmHV" crossorigin="anonymous"></script>
-
-  <script src="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.js"></script>
-  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
 </head>
 
 <body hx-boost="true">
+  <header>
+    <h1>
+      <all-caps>contacts.app</all-caps>
+      <sub-title>A Demo Contacts Application</sub-title>
+    </h1>
+  </header>
   <main>
-    <header>
-      <h1>
-        <all-caps>contacts.app</all-caps>
-        <sub-title>A Demo Contacts Application</sub-title>
-      </h1>
-    </header>
     <%~ body %>
   </main>
 </body>

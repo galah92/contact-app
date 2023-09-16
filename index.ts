@@ -109,7 +109,7 @@ app.get("/contacts/:id/email", (req, res) => {
     res.status(404).send("Not found");
     return;
   }
-  const email = (req.query.email ?? "") as string;
+  const email = req.query.email?.toString() ?? "";
   const contact = { ...existingContact, email };
   contactsRepo.validate(contact);
   res.send(contact.errors.email ?? "");

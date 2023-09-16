@@ -1,7 +1,7 @@
 <% layout("./layout") %>
 
 <form action="/contacts" method="get" class="tool-bar">
-  <label for="search">Search Term</label>
+  <label for="search">Search Contact</label>
   <input id="search" type="search" name="q" value="<%= name %>" />
   <input type="submit" value="Search" />
 </form>
@@ -39,19 +39,21 @@
       </td>
     </tr>
     <% }) %>
+    <% if (contacts.length === 10) { %>
+    <tr>
+      <td colspan="5" style="text-align: center">
+        <button
+          hx-target="closest tr"
+          hx-swap="outerHTML"
+          hx-select="tbody > tr"
+          hx-get="/contacts?page=<%= page + 1 %>">
+          Load More
+        </button>
+      </td>
+    </tr>
+    <% } %>
   </tbody>
 </table>
-
-<div>
-  <span style="float: right">
-    <% if (page > 1) { %>
-    <a href="/contacts?page=<%= page - 1 %>">Previous</a>
-    <% } %>
-    <% if (contacts.length === 10) { %>
-    <a href="/contacts?page=<%= page + 1 %>">Next</a>
-    <% } %>
-  </span>
-</div>
 
 <p>
   <a href="/contacts/new">Add Contact</a>

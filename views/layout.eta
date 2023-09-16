@@ -15,6 +15,13 @@
 
   <link rel="stylesheet" href="https://unpkg.com/missing.css@1.0.9/dist/missing.min.css">
   <style>
+    table {
+      width: 100%;
+    }
+    td {
+      vertical-align: middle;
+    }
+
     tr.htmx-swapping {
       opacity: 0;
       transition: opacity 1s ease-out;

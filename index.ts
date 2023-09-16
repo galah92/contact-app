@@ -32,6 +32,16 @@ app.get("/contacts", (req, res) => {
   res.render("index", { name, contacts, page });
 });
 
+app.delete("/contacts", (req, res) => {
+  if (req.body.selected_contact_ids) {
+    const bodyIds = req.body.selected_contact_ids as string | string[];
+    const ids = (Array.isArray(bodyIds) ? bodyIds : [bodyIds]).map(Number);
+    ids.forEach((id) => contactsRepo.remove(id));
+  }
+  const contacts = contactsRepo.all(1);
+  res.render("index", { name: "", contacts, page: 1 });
+});
+
 app.get("/contacts/count", async (_req, res) => {
   const count = await contactsRepo.count();
   res.send(`(${count} total Contacts)`);

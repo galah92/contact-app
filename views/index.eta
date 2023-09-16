@@ -59,7 +59,7 @@
   </button>
 </form>
 
-<p>
+<p class="tool-bar">
   <a href="/contacts/new">Add Contact</a>
   <span hx-get="/contacts/count" hx-trigger="revealed">
     <img

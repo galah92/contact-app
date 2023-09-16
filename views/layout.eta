@@ -15,9 +15,20 @@
 
   <link rel="stylesheet" href="https://unpkg.com/missing.css@1.0.9/dist/missing.min.css">
   <style>
+    :root {
+      --line-length: 60rem;
+      --bg: 0xffffff;
+      --accent: var(--red-10);
+    }
+
+    a {
+      text-decoration: 1px solid underline;
+    }
+
     table {
       width: 100%;
     }
+
     td {
       vertical-align: middle;
     }

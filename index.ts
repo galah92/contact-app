@@ -78,6 +78,10 @@ app.delete("/contacts/:id", (req, res) => {
     return;
   }
   contactsRepo.remove(id);
+  const isDeleteFromEditPage = req.header("HX-Trigger") === "delete-button";
+  if (!isDeleteFromEditPage) {
+    return res.send("");
+  }
   res.redirect(303, "/contacts");
 });
 

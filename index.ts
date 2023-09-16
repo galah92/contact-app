@@ -4,7 +4,7 @@ import * as contactsRepo from "./contact";
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('static'))
+app.use(express.static("static"));
 
 const eta = new Eta({ views: "/", cache: false, useWith: true });
 
@@ -24,11 +24,17 @@ app.get("/contacts", (req, res) => {
   const page = Number(req.query.page ?? "1");
   const contacts = query ? contactsRepo.search(query) : contactsRepo.all(page);
   const isActiveSearch = req.header("HX-Trigger") === "search";
-  if (isActiveSearch) {
+  if (isActiveSearch && query) {
+    // we assume all seaches are htmx requests
     return res.render("rows", { contacts });
   }
   const name = query ?? "";
   res.render("index", { name, contacts, page });
+});
+
+app.get("/contacts/count", async (_req, res) => {
+  const count = await contactsRepo.count();
+  res.send(`(${count} total Contacts)`);
 });
 
 app.get("/contacts/new", (_req, res) => {

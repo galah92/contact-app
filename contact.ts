@@ -11,8 +11,6 @@ export type Contact = {
   errors: Record<string, string>;
 };
 
-export const count = db.length;
-
 const PAGE_SIZE = 10;
 
 export const all = (page = 1) => {
@@ -68,4 +66,10 @@ export const save = (contact: Contact): boolean => {
 export const remove = (id: number): void => {
   const index = db.findIndex((c) => c.id === id);
   db.splice(index, 1);
+};
+
+export const count = async (): Promise<number> => {
+  // fake long running task by sleeping for 2 seconds
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  return db.length;
 };

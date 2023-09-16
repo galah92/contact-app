@@ -1,10 +1,23 @@
 <% layout("./layout") %>
 
-<form action="/contacts" method="get" class="tool-bar">
-  <label for="search">Search Contact</label>
-  <input id="search" type="search" name="q" value="<%= name %>" />
-  <input type="submit" value="Search" />
-</form>
+<div class="tool-bar">
+  <label for="search">Search Contact:</label>
+  <input
+    id="search"
+    type="search"
+    name="q"
+    value="<%=name%>"
+    hx-get="/contacts/"
+    hx-trigger="change, keyup delay:200ms changed"
+    hx-target="tbody"
+    hx-select="tbody tr"
+    hx-indicator="#spinner" />
+  <img
+    id="spinner"
+    class="htmx-indicator"
+    src="/img/spinner.svg"
+    alt="Request In Flight..." />
+</div>
 
 <br />
 
@@ -19,26 +32,7 @@
     </tr>
   </thead>
   <tbody>
-    <% contacts.forEach((contact) =>  { %>
-    <tr>
-      <td>
-        <%= contact.first %>
-      </td>
-      <td>
-        <%= contact.last %>
-      </td>
-      <td>
-        <%= contact.phone %>
-      </td>
-      <td>
-        <%= contact.email %>
-      </td>
-      <td>
-        <a href="/contacts/<%= contact.id %>/edit">Edit</a>
-        <a href="/contacts/<%= contact.id %>">View</a>
-      </td>
-    </tr>
-    <% }) %>
+    <%~ include("rows", { contacts }) %>
     <% if (contacts.length === 10) { %>
     <tr>
       <td colspan="5" style="text-align: center">
